@@ -5,7 +5,7 @@
 ## 工程放在哪里
 
 - Python 工程放在 Windows 用户配置文件下的 `workspace_p` 目录。先查出当前 Windows 用户的配置文件路径，再使用其下的 `workspace_p`。
-- 从 WSL 协助时，不要把工程源码写进 WSL 的家目录。WSL 里用挂载路径访问上面那个 Windows 目录。
+- 每台电脑只保留这一份检出。Grok 留在 WSL，并用挂载路径打开它。不要在 WSL 家目录再放一份，也不要把工程源码写进那里。
 - 目录不存在就创建。不要猜盘符或用户名。
 - 包代码放在 `src/clashofclans_auto/`，测试放在 `tests/`。
 
