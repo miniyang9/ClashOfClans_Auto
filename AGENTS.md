@@ -7,6 +7,7 @@
 - Python 工程放在 Windows 用户配置文件下的 `workspace_p` 目录。先查出当前 Windows 用户的配置文件路径，再使用其下的 `workspace_p`。
 - 从 WSL 协助时，不要把工程源码写进 WSL 的家目录。WSL 里用挂载路径访问上面那个 Windows 目录。
 - 目录不存在就创建。不要猜盘符或用户名。
+- 包代码放在 `src/clashofclans_auto/`，测试放在 `tests/`。
 
 ## 在哪里执行
 
@@ -23,10 +24,10 @@
 
 ## 交接
 
-- 用户要接着做已有任务时，若存在 `HANDOFF.md`，先读它。文件不存在就当没有未完成任务。
-- 任务过程只写在 `HANDOFF.md`。不要把讨论细节写进本文件或技能。
+- 用户要接着做已有任务时，若存在 `.grok/HANDOFF.md`，先读它。文件不存在就当没有未完成任务。
+- 任务过程只写在 `.grok/HANDOFF.md`。不要把讨论细节写进本文件或技能。
 
 ## 会话里的旧事实
 
 - 对话、导出记录和 memory 里出现的主机名、用户名、绝对路径、软件版本，只对记录它们的那台电脑有效。
-- 在一台新电脑上开始工作前，重新检测 Windows 用户配置文件、`workspace_p`、Python 和 Git。检测结果写在本机的 `machine.local.md`，该文件不提交。
+- 在一台新电脑上开始工作前，重新检测 Windows 用户配置文件、`workspace_p`、Python 和 Git。检测结果写在 `.grok/machine.local.md`，该文件不提交。

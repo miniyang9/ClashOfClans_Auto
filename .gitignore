@@ -1,1 +1,7 @@
+.grok/machine.local.md
 machine.local.md
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/

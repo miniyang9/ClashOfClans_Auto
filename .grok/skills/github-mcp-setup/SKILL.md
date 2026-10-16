@@ -1,5 +1,5 @@
 ---
-name: setup-github-mcp
+name: github-mcp-setup
 description: >-
   Install the official GitHub remote MCP and authenticate with a fine-grained
   PAT file. Use when grok mcp list has no github server, grok mcp doctor github
@@ -11,14 +11,14 @@ when-to-use: >-
 
 # 安装 GitHub MCP
 
-先检查，已经可用就停止。不要重复安装，也不要读取或复述令牌。
+先检查，已经可用就停止。不要重复安装，也不要读取或复述令牌。创建仓库返回 403 时用 `github-token-permissions`。`git push` 报 `invalid credentials` 时用 `git-push-auth`。
 
 ```bash
 grok mcp list
 grok mcp doctor github
 ```
 
-`doctor` 显示 handshake OK 且能发现工具时，什么都不用做。
+`doctor` 显示 handshake OK 且能发现工具时，不要重新安装。
 
 ## 还没有服务器时
 
@@ -55,7 +55,7 @@ bearer_token_file = "~/.config/github/grok-mcp-token"
 
 Account permissions 和 Organization permissions 留空，除非保存时 GitHub 明确要求。先选好 Repository access，再改这些下拉框。
 
-用户自己把令牌写入文件。助手不代写、不读取、不把令牌放进对话、仓库或 `machine.local.md`。
+用户自己把令牌写入文件。助手不代写、不读取、不把令牌放进对话、仓库或 `.grok/machine.local.md`。
 
 ```bash
 umask 077
@@ -71,4 +71,4 @@ chmod 600 ~/.config/github/grok-mcp-token
 
 令牌写好后必须退出 Grok 进程再打开。已经连过一次的会话只刷新 `/mcps` 不够，会继续显示需要认证。
 
-重启后再次运行 `grok mcp doctor github`。握手成功并发现工具后，把令牌文件路径（不含令牌内容）记入本机的 `machine.local.md`。
+重启后再次运行 `grok mcp doctor github`。握手成功并发现工具后，把令牌文件路径（不含令牌内容）记入 `.grok/machine.local.md`。
