@@ -13,6 +13,7 @@
 
 - 创建工程、安装依赖、运行、测试和提交，使用 Windows 的 Python 和 Git。
 - 先确认 Windows 上对应的可执行文件能运行，并记下实际版本。有多个 Python 时，向用户确认用哪一个，不要自行选定。
+- 工程不绑定某一台电脑的 Python 版本。代码保持与 `pyproject.toml` 的 `requires-python` 兼容。
 - WSL 里的 `python` 和 `git` 只用于 WSL 自己的文件。调用 Windows 程序时使用 Windows 可执行文件，或通过 `powershell.exe` 调用。
 - 路径在 WSL 与 Windows 之间转换时使用 `wslpath`，不要手写盘符。
 
