@@ -24,6 +24,8 @@ def _configure_win32() -> None:
         wintypes.LPARAM,
     ]
     user32.EnumWindows.restype = wintypes.BOOL
+    user32.IsWindow.argtypes = [wintypes.HWND]
+    user32.IsWindow.restype = wintypes.BOOL
     user32.IsWindowVisible.argtypes = [wintypes.HWND]
     user32.IsWindowVisible.restype = wintypes.BOOL
     user32.GetWindowTextLengthW.argtypes = [wintypes.HWND]
@@ -190,6 +192,26 @@ def find_clash_windows() -> list[GameWindow]:
             )
         )
     return matches
+
+
+def refresh_game_window(window: GameWindow) -> GameWindow | None:
+    """Return the window's current client area, or none when it is gone."""
+    if not user32.IsWindow(window.hwnd) or not user32.IsWindowVisible(window.hwnd):
+        return None
+    try:
+        screen_x, screen_y, width, height = _client_origin(window.hwnd)
+    except OSError:
+        return None
+    if width < 200 or height < 200:
+        return None
+    return GameWindow(
+        hwnd=window.hwnd,
+        title=window.title,
+        client_width=width,
+        client_height=height,
+        screen_x=screen_x,
+        screen_y=screen_y,
+    )
 
 
 def _copy_dib(hdc_source: int, width: int, height: int, blit) -> CapturedFrame:
